@@ -1,51 +1,44 @@
-# Restaurant Order Management System
+# RETO-8-POO
+# Sistema de Gestión de Restaurante en Python
 
-Este repositorio contiene un proyecto en Python para la gestión de pedidos en un restaurante. Se implementa un sistema de menú y órdenes, que incluye clases para representar diferentes tipos de ítems (bebidas, aperitivos y platos principales), además de funcionalidades para gestionar el menú (crear, actualizar, eliminar y guardar en un archivo JSON) y para procesar órdenes y pagos.
+Este repositorio contiene un proyecto en Python que implementa un sistema de gestión de restaurante. El sistema incluye funcionalidades para gestionar múltiples órdenes, administrar el menú mediante persistencia en archivos JSON y recorrer los ítems de una orden utilizando un iterador personalizado.
 
 ## Características
 
-- **Clases de ítems de menú:**  
-  - **MenuItem:** Clase base con atributos comunes.
-  - **Beverage, Appetizer, MainCourse:** Clases derivadas que extienden a *MenuItem* y añaden atributos específicos.
+- **Gestión de órdenes**:
+  - Uso de una cola FIFO (con `deque`) para administrar y procesar las órdenes en el orden de llegada.
   
-- **Gestión de Menú:**  
-  Permite cargar, guardar y modificar el menú usando un archivo JSON.
+- **Gestión del menú**:
+  - Creación, adición, actualización y eliminación de ítems en el menú.
+  - Persistencia del menú en archivos JSON para mantener la información actualizada.
+  
+- **Estructura modular**:
+  - Clases para representar distintos tipos de ítems del menú: *Beverage*, *Appetizer* y *MainCourse*.
+  - Clase `Order` que gestiona la lista de platos, calcula totales y administra el menú.
+  - Clase `Payment` para simular el procesamiento de pagos.
+  - Clase `Restaurant` para manejar múltiples órdenes.
+  
+- **Iterador personalizado**:
+  - Se implementa la clase `OrderItemsIterable` que permite recorrer todos los ítems de una orden de forma iterativa, devolviendo un diccionario con todos los atributos de cada ítem.
 
-- **Gestión de Pedidos y Pagos:**  
-  Permite agregar platos a un pedido, calcular el precio total (incluyendo descuentos) y procesar pagos.
+## Estructura del Proyecto
 
-- **Iterador de Ítems del Pedido:**  
-  Se implementa la clase `OrderItemsIterable` que permite recorrer de manera iterativa todos los ítems de un pedido, devolviendo un diccionario con todos sus atributos.
+El proyecto se organiza en las siguientes clases:
 
-- **Cola de Órdenes:**  
-  La clase `Restaurant` utiliza una cola para gestionar múltiples órdenes de manera secuencial.
+- **MenuItem**:  
+  Clase base para los ítems del menú, que contiene propiedades comunes como nombre y precio.
 
-## Uso
+- **Beverage, Appetizer, MainCourse**:  
+  Clases derivadas de `MenuItem` que añaden atributos específicos para bebidas, aperitivos y platos principales, respectivamente.
 
-1. **Clonar el repositorio:**
+- **Order**:  
+  Encargada de gestionar la lista de platos de una orden, calcular el total (aplicando descuentos en caso de tener un plato principal) y administrar el menú mediante persistencia en archivos JSON.
 
-   ```bash
-   git clone https://github.com/tu_usuario/restaurant-order-system.git
-   cd restaurant-order-system
-Ejecutar el código:
+- **Payment**:  
+  Simula el proceso de pago de una orden, mostrando el monto a pagar y el método de pago utilizado.
 
-El archivo principal contiene ejemplos de uso para cada funcionalidad. Para ejecutarlo:
+- **Restaurant**:  
+  Utiliza una cola (FIFO) para gestionar y procesar múltiples órdenes de forma secuencial.
 
-bash
-Copiar
-Editar
-python main.py
-Modificar el menú:
-
-Puedes agregar, actualizar o eliminar ítems del menú editando el archivo menu.json o utilizando los métodos correspondientes en la clase Order.
-
-Iterar sobre los ítems de un pedido:
-
-Utiliza la clase OrderItemsIterable para recorrer todos los elementos de una orden y obtener sus atributos.
-
-Estructura del Proyecto
-main.py: Archivo principal que contiene la implementación completa y ejemplos de uso.
-menu.json: Archivo para guardar y cargar el menú del restaurante.
-README.md: Este archivo.
-Requisitos
-Python 3.x
+- **OrderItemsIterable**:  
+  Permite recorrer de forma iterativa todos los ítems de una orden, devolviendo para cada uno un diccionario con todos sus atributos.
